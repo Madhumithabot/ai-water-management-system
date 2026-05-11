@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>AI Water Usage Predictor</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#eef2f7;
+text-align:center;
+}
+
+.container{
+width:420px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 10px grey;
+}
+
+input,select{
+width:100%;
+padding:8px;
+margin:6px 0;
+}
+
+button{
+background:#007BFF;
+color:white;
+border:none;
+padding:10px;
+width:100%;
+}
+
+.result{
+margin-top:20px;
+background:#e9f3ff;
+padding:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>AI-Based Household Water Usage Prediction</h2>
+
+<div class="container">
+
+<form method="POST">
+
+People in house
+<input type="number" name="people" required>
+
+Season
+<select name="season">
+<option>Summer</option>
+<option>Winter</option>
+<option>Rainy</option>
+</select>
+
+Rainfall Level
+<select name="rainfall_level">
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
+</select>
+
+Daily Water Usage (liters)
+<input type="number" name="daily_usage" required>
+
+Roof Area (sq meters)
+<input type="number" name="roof_area" required>
+
+Rainfall Amount (mm)
+<input type="number" name="rainfall_amount" required>
+
+<button type="submit">Predict</button>
+
+</form>
+
+{% if prediction %}
+
+<div class="result">
+
+<h3>Predicted Water Usage Level</h3>
+<p>{{prediction}}</p>
+
+<h3>Rainwater Harvesting Potential</h3>
+<p>{{rainwater}} liters</p>
+
+<h3>Recommendations</h3>
+
+<ul>
+{% for r in advice %}
+<li>{{r}}</li>
+{% endfor %}
+</ul>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
